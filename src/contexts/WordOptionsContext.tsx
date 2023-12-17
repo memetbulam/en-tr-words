@@ -4,6 +4,7 @@ import React, {
   ReactNode,
   SetStateAction,
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -16,6 +17,7 @@ interface WordOptionsProps {
 interface WordOptionsContextType {
   words: Words[];
   setWords: Dispatch<SetStateAction<Words[]>>;
+  dublicateControl: () => void;
 }
 
 const WordOptionsContext = createContext<WordOptionsContextType | undefined>(
@@ -83,8 +85,17 @@ const WordOptionsProvider: React.FC<WordOptionsProps> = ({ children }) => {
     { id: 46, tr: "Daha az", en: "Less, Fewer", isTrWordViewed: true },
   ]);
 
+  const dublicateControl = useCallback(() => {
+    const duplicatehWords = words.filter((word, index, array) => {
+      return (
+        array.findIndex((w) => w.tr === word.tr || w.en === word.en) !== index
+      );
+    });
+    console.log("Duplicate Turkish Words:", duplicatehWords);
+  }, [words]);
+
   return (
-    <WordOptionsContext.Provider value={{ words, setWords }}>
+    <WordOptionsContext.Provider value={{ words, setWords, dublicateControl }}>
       {children}
     </WordOptionsContext.Provider>
   );

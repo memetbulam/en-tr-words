@@ -2,10 +2,10 @@ import CopyTextButton from "@/components/CopyTextButton";
 import { useWordOptions } from "@/contexts/WordOptionsContext";
 import { wordCardContainerStyle } from "@/utils/constants/others";
 import Head from "next/head";
-import { Box, Flex } from "theme-ui";
+import { Box, Button, Flex } from "theme-ui";
 
 export default function Home() {
-  const { words, setWords } = useWordOptions();
+  const { words, setWords, dublicateControl } = useWordOptions();
 
   const handleWordContainerClick = (clickedId: number) => {
     const updatedWords = words?.map((item) => {
@@ -78,6 +78,21 @@ export default function Home() {
             );
           })}
         </Flex>
+        <Button
+          sx={{
+            position: "fixed",
+            right: 0,
+            bottom: 0,
+            padding: 0,
+            width: 16,
+            height: 16,
+            borderRadius: "50%",
+            opacity: 0,
+          }}
+          onClick={() => {
+            dublicateControl();
+          }}
+        ></Button>
       </main>
     </>
   );
