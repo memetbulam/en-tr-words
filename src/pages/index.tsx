@@ -1,28 +1,11 @@
 import CopyTextButton from "@/components/CopyTextButton";
+import { useWordOptions } from "@/contexts/WordOptionsContext";
 import { wordCardContainerStyle } from "@/utils/constants/others";
-import { Words } from "@/utils/types";
 import Head from "next/head";
-import { useState } from "react";
-import { Box, Button, Flex, Text } from "theme-ui";
+import { Box, Flex } from "theme-ui";
 
 export default function Home() {
-  const [words, setWords] = useState<Words[]>([
-    { id: 0, tr: "Hiç, asla", en: "Never", isTrWordViewed: true },
-    { id: 1, tr: "Nadiren", en: "Rarely", isTrWordViewed: true },
-    { id: 2, tr: "Bazen", en: "Sometimes", isTrWordViewed: true },
-    { id: 3, tr: "Çoğu zaman, sıklıkla", en: "Often", isTrWordViewed: true },
-    { id: 4, tr: "Her zaman, hep", en: "Always", isTrWordViewed: true },
-    {
-      id: 5,
-      tr: "Tercih etmek, öncelik tanımak",
-      en: "Prefer",
-      isTrWordViewed: true,
-    },
-    { id: 6, tr: "Hafta sonu", en: "Weekend", isTrWordViewed: true },
-    { id: 7, tr: "Her, her türlü", en: "Every", isTrWordViewed: true },
-    { id: 8, tr: "Süslü, fantezi", en: "Fancy", isTrWordViewed: true },
-    { id: 9, tr: "Pratik", en: "Practise", isTrWordViewed: true },
-  ]);
+  const { words, setWords } = useWordOptions();
 
   const handleWordContainerClick = (clickedId: number) => {
     const updatedWords = words?.map((item) => {
