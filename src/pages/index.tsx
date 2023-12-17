@@ -1,30 +1,32 @@
+import CopyTextButton from "@/components/CopyTextButton";
+import { wordCardContainerStyle } from "@/utils/constants/others";
 import { Words } from "@/utils/types";
 import Head from "next/head";
 import { useState } from "react";
-import { Box, Flex, Text } from "theme-ui";
+import { Box, Button, Flex, Text } from "theme-ui";
 
 export default function Home() {
   const [words, setWords] = useState<Words[]>([
-    { id: 0, en: "Never", tr: "Hiç, asla", isTrWordViewed: true },
-    { id: 1, en: "Rarely", tr: "Nadiren", isTrWordViewed: true },
-    { id: 2, en: "Sometimes", tr: "Bazen", isTrWordViewed: true },
-    { id: 3, en: "Often", tr: "Çoğu zaman, sıklıkla", isTrWordViewed: true },
-    { id: 4, en: "Always", tr: "Her zaman, hep", isTrWordViewed: true },
+    { id: 0, tr: "Hiç, asla", en: "Never", isTrWordViewed: true },
+    { id: 1, tr: "Nadiren", en: "Rarely", isTrWordViewed: true },
+    { id: 2, tr: "Bazen", en: "Sometimes", isTrWordViewed: true },
+    { id: 3, tr: "Çoğu zaman, sıklıkla", en: "Often", isTrWordViewed: true },
+    { id: 4, tr: "Her zaman, hep", en: "Always", isTrWordViewed: true },
     {
       id: 5,
-      en: "Prefer",
       tr: "Tercih etmek, öncelik tanımak",
+      en: "Prefer",
       isTrWordViewed: true,
     },
-    { id: 6, en: "Weekend", tr: "Hafta sonu", isTrWordViewed: true },
-    { id: 7, en: "Every", tr: "Her, her türlü", isTrWordViewed: true },
-    { id: 8, en: "Fancy", tr: "Süslü, fantezi", isTrWordViewed: true },
-    { id: 9, en: "Practise", tr: "Pratik", isTrWordViewed: true },
+    { id: 6, tr: "Hafta sonu", en: "Weekend", isTrWordViewed: true },
+    { id: 7, tr: "Her, her türlü", en: "Every", isTrWordViewed: true },
+    { id: 8, tr: "Süslü, fantezi", en: "Fancy", isTrWordViewed: true },
+    { id: 9, tr: "Pratik", en: "Practise", isTrWordViewed: true },
   ]);
 
-  const handleTrContainerClick = (word: Words) => {
+  const handleWordContainerClick = (clickedId: number) => {
     const updatedWords = words?.map((item) => {
-      if (item.id === word.id) {
+      if (item.id === clickedId) {
         return { ...item, isTrWordViewed: !item.isTrWordViewed };
       } else {
         return item;
@@ -65,49 +67,30 @@ export default function Home() {
               >
                 <Flex
                   sx={{
-                    position: "absolute",
+                    ...wordCardContainerStyle,
                     left: word?.isTrWordViewed ? 0 : -350,
-                    top: 0,
-                    backgroundColor: "lightblue",
-                    border: "1px solid black",
-                    borderRadius: 6,
-                    width: "100%",
-                    height: "100%",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "20px",
-                    fontWeight: 500,
-                    cursor: "pointer",
-                    padding: "4px 8px",
-                    transition: "left 500ms",
                   }}
-                  onClick={() => handleTrContainerClick(word)}
+                  onClick={() => handleWordContainerClick(word.id)}
                 >
                   {word.tr}
+                  <CopyTextButton
+                    isTrWordViewed={word.isTrWordViewed}
+                    word={{ tr: word.tr, en: word.en }}
+                  />
                 </Flex>
                 <Flex
                   sx={{
-                    position: "absolute",
+                    ...wordCardContainerStyle,
                     left: word?.isTrWordViewed ? -350 : 0,
-                    top: 0,
-                    backgroundColor: "lightblue",
-                    border: "1px solid black",
-                    borderRadius: 6,
-                    width: "100%",
-                    height: "100%",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "20px",
-                    fontWeight: 500,
-                    cursor: "pointer",
-                    padding: "4px 8px",
-                    transition: "left 500ms",
                   }}
-                  onClick={() => handleTrContainerClick(word)}
+                  onClick={() => handleWordContainerClick(word.id)}
                 >
                   {word.en}
+                  <CopyTextButton
+                    isTrWordViewed={word.isTrWordViewed}
+                    word={{ tr: word.tr, en: word.en }}
+                  />
                 </Flex>
-                {/* <Flex>{word.en}</Flex> */}
               </Box>
             );
           })}
