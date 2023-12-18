@@ -1,8 +1,8 @@
-import CopyTextButton from "@/components/CopyTextButton";
+import RightSide from "@/components/RightSide";
 import { useWordOptions } from "@/contexts/WordOptionsContext";
 import { wordCardContainerStyle } from "@/utils/constants/others";
 import Head from "next/head";
-import { Box, Button, Flex } from "theme-ui";
+import { Box, Button, Flex, Text } from "theme-ui";
 
 export default function Home() {
   const { words, setWords, dublicateControl } = useWordOptions();
@@ -55,8 +55,20 @@ export default function Home() {
                   }}
                   onClick={() => handleWordContainerClick(word.id)}
                 >
-                  {word.tr}
-                  <CopyTextButton
+                  <Text
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                      borderTopLeftRadius: 6,
+                      borderBottomLeftRadius: 6,
+                      padding: "4px 8px",
+                    }}
+                  >
+                    {word.tr}
+                  </Text>
+                  <RightSide
                     isTrWordViewed={word.isTrWordViewed}
                     word={{ tr: word.tr, en: word.en }}
                   />
@@ -68,8 +80,20 @@ export default function Home() {
                   }}
                   onClick={() => handleWordContainerClick(word.id)}
                 >
-                  {word.en}
-                  <CopyTextButton
+                  <Text
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      width: "100%",
+                      borderTopLeftRadius: 6,
+                      borderBottomLeftRadius: 6,
+                      padding: "4px 8px",
+                    }}
+                  >
+                    {word.en}
+                  </Text>
+                  <RightSide
                     isTrWordViewed={word.isTrWordViewed}
                     word={{ tr: word.tr, en: word.en }}
                   />
