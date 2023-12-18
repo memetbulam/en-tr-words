@@ -57,6 +57,7 @@ const RightSide = ({ isTrWordViewed, word }: Props) => {
         backgroundColor: "white",
         borderTopRightRadius: 6,
         borderBottomRightRadius: 6,
+        cursor: "default",
       }}
       onClick={(e) => {
         e.stopPropagation();
