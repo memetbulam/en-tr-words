@@ -14,3 +14,27 @@ export const wordCardContainerStyle: ThemeUIStyleObject = {
   padding: 0,
   transition: "left 500ms",
 };
+
+export const wordCardTextStyle: ThemeUIStyleObject = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  width: "100%",
+  borderTopLeftRadius: 6,
+  borderBottomLeftRadius: 6,
+  padding: "4px 8px",
+  textAlign: "center",
+};
+
+export const rightSideButtonStyle: ThemeUIStyleObject = {
+  width: 30,
+  height: 30,
+  backgroundColor: "transparent",
+  padding: "6px",
+  cursor: "pointer",
+  borderRadius: "50%",
+  transition: "background-color 500ms",
+  "&:hover": {
+    backgroundColor: "darkgray",
+  },
+};

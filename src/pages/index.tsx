@@ -1,6 +1,9 @@
 import RightSide from "@/components/RightSide";
 import { useWordOptions } from "@/contexts/WordOptionsContext";
-import { wordCardContainerStyle } from "@/utils/constants/others";
+import {
+  wordCardContainerStyle,
+  wordCardTextStyle,
+} from "@/utils/constants/others";
 import Head from "next/head";
 import { Box, Button, Flex, Text } from "theme-ui";
 
@@ -55,19 +58,7 @@ export default function Home() {
                   }}
                   onClick={() => handleWordContainerClick(word.id)}
                 >
-                  <Text
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      width: "100%",
-                      borderTopLeftRadius: 6,
-                      borderBottomLeftRadius: 6,
-                      padding: "4px 8px",
-                    }}
-                  >
-                    {word.tr}
-                  </Text>
+                  <Text sx={wordCardTextStyle}>{word.tr}</Text>
                   <RightSide
                     isTrWordViewed={word.isTrWordViewed}
                     word={{ tr: word.tr, en: word.en }}
@@ -80,19 +71,7 @@ export default function Home() {
                   }}
                   onClick={() => handleWordContainerClick(word.id)}
                 >
-                  <Text
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      width: "100%",
-                      borderTopLeftRadius: 6,
-                      borderBottomLeftRadius: 6,
-                      padding: "4px 8px",
-                    }}
-                  >
-                    {word.en}
-                  </Text>
+                  <Text sx={wordCardTextStyle}>{word.en}</Text>
                   <RightSide
                     isTrWordViewed={word.isTrWordViewed}
                     word={{ tr: word.tr, en: word.en }}
