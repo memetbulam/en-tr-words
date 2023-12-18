@@ -4,6 +4,7 @@ import CopyIcon from "./Icons/CopyIcon";
 import GoogleIcon from "./Icons/GoogleIcon";
 import DeeplIcon from "./Icons/DeeplIcon";
 import { rightSideButtonStyle } from "@/utils/constants/others";
+import CheckIcon from "./Icons/CheckIcon";
 
 interface Props {
   isTrWordViewed: boolean;
@@ -11,7 +12,10 @@ interface Props {
 }
 
 const RightSide = ({ isTrWordViewed, word }: Props) => {
+  const [isGoogleClicked, setIsGoogleClicked] = useState(false);
+
   const handleCopyClick = (e: React.MouseEvent<HTMLElement>) => {
+    setIsGoogleClicked(true);
     e.stopPropagation();
     const viewedText = isTrWordViewed ? word.tr : word.en;
     navigator.clipboard.writeText(viewedText);
@@ -47,6 +51,14 @@ const RightSide = ({ isTrWordViewed, word }: Props) => {
     }
   };
 
+  useEffect(() => {
+    if (isGoogleClicked) {
+      setTimeout(() => {
+        setIsGoogleClicked(false);
+      }, 1000);
+    }
+  }, [isGoogleClicked]);
+
   return (
     <Flex
       sx={{
@@ -70,7 +82,7 @@ const RightSide = ({ isTrWordViewed, word }: Props) => {
         <DeeplIcon />
       </Button>
       <Button sx={rightSideButtonStyle} onClick={handleCopyClick}>
-        <CopyIcon />
+        {isGoogleClicked ? <CheckIcon /> : <CopyIcon />}
       </Button>
     </Flex>
   );
