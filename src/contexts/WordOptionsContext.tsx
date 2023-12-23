@@ -83,6 +83,22 @@ const WordOptionsProvider: React.FC<WordOptionsProps> = ({ children }) => {
     { id: 44, tr: "Yaratıcı", en: "Creative", isTrWordViewed: true },
     { id: 45, tr: "Yardımcı", en: "Helpful", isTrWordViewed: true },
     { id: 46, tr: "Daha az", en: "Less, Fewer", isTrWordViewed: true },
+    { id: 47, tr: "İş, meslek", en: "Job", isTrWordViewed: true },
+    { id: 48, tr: "Yolculuk", en: "Journey", isTrWordViewed: true },
+    { id: 49, tr: "Kıskanç", en: "Jealous", isTrWordViewed: true },
+    { id: 50, tr: "Adalet", en: "Justice", isTrWordViewed: true },
+    {
+      id: 51,
+      tr: "Eleştirel, direkt eleştirel",
+      en: "Judgmental",
+      isTrWordViewed: true,
+    },
+    {
+      id: 52,
+      tr: "Şok edici / Özel detaylar barındıran",
+      en: "Juicy",
+      isTrWordViewed: true,
+    },
   ]);
 
   const dublicateControl = useCallback(() => {
